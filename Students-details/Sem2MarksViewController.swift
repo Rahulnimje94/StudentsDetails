@@ -39,10 +39,10 @@ class Sem2MarksViewController: UIViewController {
                                                    Hindi: hindiTextfield.text ?? "",
                                                    french: frenchTextfield.text ?? "")
         
-        guard let finalViewController = storyboard?.instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController else {
-            fatalError("\(#function) View Controller not found")
-        }
-        self.navigationController?.pushViewController(finalViewController, animated: true)
+//        guard let finalViewController = storyboard?.instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController else {
+//            fatalError("\(#function) View Controller not found")
+//        }
+//        self.navigationController?.pushViewController(finalViewController, animated: true)
     }
     
 

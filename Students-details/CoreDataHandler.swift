@@ -20,6 +20,7 @@ struct CoreDataHandler {
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     fileprivate let randomNumber: Int32 = Int32(arc4random()) //Student ID
     
+    
     func fetchStudentInFo(completionHandler:@escaping (Results<[PersonInfo]>)-> Void){
         DispatchQueue.main.async {
             let managedContext = self.appDelegate.persistentContainer.viewContext
@@ -54,6 +55,20 @@ struct CoreDataHandler {
         
     }
     
+    func fetchFirstSemSubjectMarks(completionHandler:@escaping (Results<[Sem1Marks]>)-> Void) {
+        DispatchQueue.main.async {
+            let managedContext = self.appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Sem1Marks")
+            do {
+                let details = try managedContext.fetch(fetchRequest) as! [Sem1Marks]
+                completionHandler(.success(details))
+            } catch let error as NSError {
+                print("could not fetch. \(error), \(error.userInfo)")
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
     func saveFirstSemSubjectsMarks(physics: String, chemistry: String, maths: String){
     
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -69,6 +84,20 @@ struct CoreDataHandler {
                 try managedContext.save()
             } catch let error as NSError {
                 print("could not save. \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+    func fetchSecondSemSubjectMarks(completionHandler:@escaping (Results<[Sem2Marks]>)-> Void) {
+        DispatchQueue.main.async {
+            let managedContext = self.appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Sem2Marks")
+            do {
+                let details = try managedContext.fetch(fetchRequest) as! [Sem2Marks]
+                completionHandler(.success(details))
+            } catch let error as NSError {
+                print("could not fetch. \(error), \(error.userInfo)")
+                completionHandler(.failure(error))
             }
         }
     }
