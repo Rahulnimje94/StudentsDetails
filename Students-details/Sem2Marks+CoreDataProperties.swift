@@ -19,6 +19,6 @@ extension Sem2Marks {
     @NSManaged public var english: String?
     @NSManaged public var french: String?
     @NSManaged public var hindi: String?
-    @NSManaged public var studentID: Int32
+    @NSManaged public var studentID: String?
 
 }

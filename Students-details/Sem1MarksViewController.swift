@@ -9,7 +9,7 @@
 import UIKit
 
 
-class Sem1MarksViewController: UIViewController {
+class Sem1MarksViewController: UIViewController, UITextFieldDelegate {
     
     var studentDetails = (name: "", dob: "", collageName: "")
     @IBOutlet weak var subjectLabel: UILabel!
@@ -25,6 +25,13 @@ class Sem1MarksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        physicsTextField.delegate = self
+        physicsTextField.keyboardType = .numberPad
+        chemistryTextField.delegate = self
+        chemistryTextField.keyboardType = .numberPad
+        matheTextField.delegate = self
+        matheTextField.keyboardType = .numberPad
+
     }
     
     //MARK: - Save & Next Process
@@ -37,6 +44,13 @@ class Sem1MarksViewController: UIViewController {
         sem2VC.subjectMarks = (physics: physicsTextField.text ?? "", chemistry: chemistryTextField.text ?? "", maths: matheTextField.text ?? "")
         self.navigationController?.pushViewController(sem2VC, animated: true)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let numberCharacters = CharacterSet(charactersIn: "0123456789").inverted
+        return string.rangeOfCharacter(from: numberCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+    }
+    
+
     
 }
 

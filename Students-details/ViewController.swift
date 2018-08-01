@@ -61,13 +61,13 @@ class ViewController: UIViewController {
             }
             print(details)
             self.studentInFo = details[0]
-            self.fetchStudentFirstSem(details[0].studentID)
+            self.fetchStudentFirstSem(details[0].studentID ?? "")
         }
 
     }
     
     //MARK: - Getting Student Details
-    func fetchStudentFirstSem(_ studentID: Int32){
+    func fetchStudentFirstSem(_ studentID: String){
         coreDataHandler.fetchFirstSemSubjectMarks { [unowned self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchStudentSecondSem(_ studentID: Int32){
+    func fetchStudentSecondSem(_ studentID: String){
         coreDataHandler.fetchSecondSemSubjectMarks { [unowned self] result in
             DispatchQueue.main.async {
                 switch result {

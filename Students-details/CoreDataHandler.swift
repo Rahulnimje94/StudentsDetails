@@ -18,8 +18,7 @@ enum Results<Value> {
 struct CoreDataHandler {
     
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    fileprivate let randomNumber: Int32 = Int32(arc4random()) //Student ID
-    
+    fileprivate let studentID = UUID().uuidString //Student ID
     
     func fetchStudentInFo(completionHandler:@escaping (Results<[PersonInfo]>)-> Void){
         DispatchQueue.main.async {
@@ -35,8 +34,7 @@ struct CoreDataHandler {
         }
     }
     
-    func saveStudentDetails(name: String, dob: String, collageName: String){
-       
+     func saveStudentDetails(name: String, dob: String, collageName: String){
         let managedContext = appDelegate.persistentContainer.viewContext
         DispatchQueue.main.async {
             let entity = NSEntityDescription.entity(forEntityName: "PersonInfo", in: managedContext)
@@ -44,7 +42,7 @@ struct CoreDataHandler {
             person.setValue(name, forKey: "name")
             person.setValue(dob, forKey: "dob")
             person.setValue(collageName, forKey: "college")
-            person.setValue(self.randomNumber, forKey: "studentID")
+            person.setValue(self.studentID, forKey: "studentID")
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -79,7 +77,7 @@ struct CoreDataHandler {
             marks.setValue(physics, forKey: "physics")
             marks.setValue(chemistry, forKey: "chemistry")
             marks.setValue(maths, forKey: "mathe")
-            marks.setValue(self.randomNumber, forKey: "studentID")
+            marks.setValue(self.studentID, forKey: "studentID")
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -112,7 +110,7 @@ struct CoreDataHandler {
             marks.setValue(english, forKey: "english")
             marks.setValue(Hindi, forKey: "Hindi")
             marks.setValue(french, forKey: "french")
-            marks.setValue(self.randomNumber, forKey: "studentID")
+            marks.setValue(self.studentID, forKey: "studentID")
             do {
                 try managedContext.save()
             } catch let error as NSError {

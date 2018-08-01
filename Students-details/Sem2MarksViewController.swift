@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Sem2MarksViewController: UIViewController {
+class Sem2MarksViewController: UIViewController, UITextFieldDelegate {
     
     lazy var coreDataHandler = CoreDataHandler()
     
@@ -28,6 +28,13 @@ class Sem2MarksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        englishTextField.delegate = self
+        englishTextField.keyboardType = .numberPad
+        hindiTextfield.delegate = self
+        hindiTextfield.keyboardType = .numberPad
+        frenchTextfield.delegate = self
+        frenchTextfield.keyboardType = .numberPad
+
     }
 
     //MARK: - Finally Save data here 
@@ -39,12 +46,16 @@ class Sem2MarksViewController: UIViewController {
                                                    Hindi: hindiTextfield.text ?? "",
                                                    french: frenchTextfield.text ?? "")
         
-//        guard let finalViewController = storyboard?.instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController else {
-//            fatalError("\(#function) View Controller not found")
-//        }
-//        self.navigationController?.pushViewController(finalViewController, animated: true)
+        guard let ViewController = storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+            fatalError("\(#function) View Controller not found")
+        }
+        self.navigationController?.pushViewController(ViewController, animated: true)
     }
     
-
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let numberCharacters = CharacterSet(charactersIn: "0123456789").inverted
+        return string.rangeOfCharacter(from: numberCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+    }
 
 }

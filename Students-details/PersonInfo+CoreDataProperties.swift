@@ -20,6 +20,6 @@ extension PersonInfo {
     @NSManaged public var college: String?
     @NSManaged public var dob: String?
     @NSManaged public var name: String?
-    @NSManaged public var studentID: Int32
+    @NSManaged public var studentID: String?
 
 }

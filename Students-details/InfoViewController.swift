@@ -20,6 +20,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.dateTextField.delegate = self
     }
         
     @IBAction func datePickerButten(_ sender: Any) {
@@ -68,6 +69,10 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UITextFieldDel
         self.navigationController?.pushViewController(sem1VC, animated: true)
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return false
+    }
+
     
 }
 

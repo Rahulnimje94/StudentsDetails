@@ -19,6 +19,6 @@ extension Sem1Marks {
     @NSManaged public var chemistry: String?
     @NSManaged public var mathe: String?
     @NSManaged public var physics: String?
-    @NSManaged public var studentID: Int32
+    @NSManaged public var studentID: String?
 
 }
